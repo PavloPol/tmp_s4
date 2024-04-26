@@ -1,0 +1,30 @@
+(library
+  (name fullsub)
+  (modules)
+  (preprocess (pps lisp))
+)
+
+(executable
+  (name main)
+  (public_name main)
+  (libraries fullsub)
+  (flags (:standard -w -10-27-32-37-41-42-44-45))
+  (preprocess (pps ppx_inline_test))
+)
+
+(rule
+  (targets lexer.ml)
+  (deps lexer.mll)
+  (action
+    (run ocamllex %{dep:lexer.mll})
+  )
+)
+
+(rule
+  (targets parser.ml parser.mli)
+  (deps parser.mly)
+  (action
+    (run ocamlyacc -v %{dep:parser.mly})
+  )
+)
+

@@ -1,0 +1,3 @@
+(lang dune 2.9)
+(name fullsub)
+(version 1.0.0)
